@@ -9,11 +9,16 @@ class FullPost extends Component {
   };
 
   componentDidMount() {
+    this.loadData();
+  }
+
+  componentDidUpdate() {
+    this.loadData();
+  }
+
+  loadData() {
     if (this.props.match.params.id) {
-      if (
-        !this.state.loadedPost ||
-        (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)
-      ) {
+      if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id)) {
         Axios.get("/posts/" + this.props.match.params.id).then(
           response => {
             // console.log(response);
@@ -25,7 +30,7 @@ class FullPost extends Component {
   }
 
   deletePostHandler = () => {
-    Axios.delete("/posts/" + this.props.id)
+    Axios.delete("/posts/" + this.props.match.params.id)
         .then(response => {
             console.log(response);
         });
@@ -33,7 +38,7 @@ class FullPost extends Component {
 
   render() {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
-    if (this.props.id) {
+    if (this.props.match.params.id) {
       <p style={{ textAlign: "center" }}>Loading...</p>;
     }
     // null is treated as false. so when id will be null

@@ -13,7 +13,7 @@ class Posts extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props);
+        // console.log(this.props);
         Axios.get("/posts")
             .then(response => {
                 const posts = response.data.slice(0, 4);
@@ -34,7 +34,8 @@ class Posts extends Component {
     }
 
     postSelectedHandler(id) {
-        this.props.history.push({pathName: '/posts/' + id})
+        console.log(this.props.history);
+        this.props.history.push({pathname: '/posts/' + id})
     }
 
     render() {

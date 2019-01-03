@@ -11,7 +11,7 @@ class NewPost extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
+        // console.log(this.props);
     }
 
     postDataHandler = () => {
@@ -22,7 +22,7 @@ class NewPost extends Component {
         }
         Axios.post("/posts", data)
             .then(response => {
-                console.log(response);
+                // console.log(response);
             });
     }
 
